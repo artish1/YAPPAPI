@@ -4,7 +4,7 @@ const cheerio = require("cheerio");
 const ocean_name = "emerald";
 const pirate_name = "Hera";
 
-async function getPiratePage(pirate_name, ocean_name) {
+async function getPirateCrew(pirate_name, ocean_name) {
   const url = `http://${ocean_name}.puzzlepirates.com/yoweb/pirate.wm?target=${pirate_name}&classic=$classic`;
   const response = await axios.get(url);
 
@@ -16,8 +16,7 @@ async function getPiratePage(pirate_name, ocean_name) {
   const crew = status.find("b a");
   return crew.text();
 }
-const hello = getPiratePage(pirate_name, ocean_name);
 
-hello.then((res) => {
-  console.log("Crew: ", res);
-});
+module.exports = {
+  getPirateCrew,
+};
